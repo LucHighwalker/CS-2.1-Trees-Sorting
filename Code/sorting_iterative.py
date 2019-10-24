@@ -19,6 +19,7 @@ def bubble_sort(items):
     repeating until all items are in sorted order.
     TODO: Running time: O(n^2) since if all items are out of order, it will have to perform n operations on n items
     TODO: Memory usage: O(1) since it only manipulates the input variable without creating a new list"""
+
     sortd = False
     index = 0
     index_mod = 1
@@ -48,8 +49,9 @@ def bubble_sort(items):
 def selection_sort(items):
     """Sort given items by finding minimum item, swapping it with first
     unsorted item, and repeating until all items are in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
+    TODO: Running time: O(logn * n) since it has to do logn operations on n tiems
+    TODO: Memory usage: O(1) it only manipulates the input list"""
+
     sortd = len(items) < 1
     already_sorted = 0
     while not sortd:
@@ -73,11 +75,8 @@ def selection_sort(items):
 def insertion_sort(items):
     """Sort given items by taking first unsorted item, inserting it in sorted
     order in front of items, and repeating until all items are in order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Repeat until all items are in sorted order
-    # TODO: Take first unsorted item
-    # TODO: Insert it in sorted order in front of items
+    TODO: Running time: O(logn * n) since it has to do logn operations on n tiems
+    TODO: Memory usage: O(1) it only manipulates the input list"""
 
     already_sorted = 0
     for i in range(len(items)):
