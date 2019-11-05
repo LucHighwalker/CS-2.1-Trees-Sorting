@@ -4,6 +4,8 @@ from sorting_iterative import is_sorted, bubble_sort, selection_sort, insertion_
 from sorting_recursive import split_sort_merge, merge_sort, quick_sort
 from sorting_integer import counting_sort, bucket_sort
 
+from datetime import datetime
+
 
 def random_ints(count=20, min=1, max=50):
     """Return a list of `count` integers sampled uniformly at random from
@@ -14,16 +16,20 @@ def random_ints(count=20, min=1, max=50):
 
 def test_sorting(sort=bubble_sort, num_items=20, max_value=50):
     """Test sorting algorithms with a small list of random items."""
+    print('Generating list of {!r} items with a max value of {!r}'.format(num_items, max_value))
     # Create a list of items randomly sampled from range [1...max_value]
     items = random_ints(num_items, 1, max_value)
-    print('Initial items: {!r}'.format(items))
+    # print('Initial items: {!r}'.format(items))
     print('Sorted order?  {!r}'.format(is_sorted(items)))
 
     # Test the sorting algorithm and ensure the list is sorted afterward
     print('Sorting items with {}(items)'.format(sort.__name__))
+    start_time = datetime.now()
     sort(items)  # Note: sort should be a mutative function (modify input)
-    print('Sorted items:  {!r}'.format(items))
+    end_time = datetime.now()
+    # print('Sorted items:  {!r}'.format(items))
     print('Sorted order?  {!r}'.format(is_sorted(items)))
+    print('Benchmark: {!r}'.format(end_time - start_time))
 
 
 def main():

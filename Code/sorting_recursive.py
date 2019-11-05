@@ -1,4 +1,5 @@
 #!python
+from sorting_iterative import insertion_sort
 
 
 def merge(items1, items2):
@@ -9,6 +10,30 @@ def merge(items1, items2):
     # TODO: Repeat until one list is empty
     # TODO: Find minimum item in both lists and append it to new list
     # TODO: Append remaining items in non-empty list to new list
+
+    items = list()
+
+    counter1 = 0
+    counter2 = 0
+
+    list1 = items1 if items1 != None else list()
+    list2 = items2 if items2 != None else list()
+
+    while len(list1) + len(list2) > len(items):
+        if counter1 == len(list1):
+            items.append(list2[counter2])
+            counter2 += 1
+        elif counter2 == len(list2):
+            items.append(list1[counter1])
+            counter1 += 1
+        elif items1[counter1] >= list2[counter2]:
+            items.append(list2[counter2])
+            counter2 += 1
+        elif items2[counter2] > list1[counter1]:
+            items.append(list1[counter1])
+            counter1 += 1
+
+    return items
 
 
 def split_sort_merge(items):
@@ -21,6 +46,16 @@ def split_sort_merge(items):
     # TODO: Sort each half using any other sorting algorithm
     # TODO: Merge sorted halves into one list in sorted order
 
+    middle = len(items) // 2
+
+    array1 = items[:middle]
+    array2 = items[middle:]
+
+    insertion_sort(array1)
+    insertion_sort(array2)
+
+    return merge(array1, array2)
+
 
 def merge_sort(items):
     """Sort given items by splitting list into two approximately equal halves,
@@ -31,6 +66,14 @@ def merge_sort(items):
     # TODO: Split items list into approximately equal halves
     # TODO: Sort each half by recursively calling merge sort
     # TODO: Merge sorted halves into one list in sorted order
+
+    if len(items) > 1:
+        middle = len(items) // 2
+        items1 = items[:middle]
+        items2 = items[middle:]
+        merge_sort(items1)
+        merge_sort(items2)
+        items[:] = merge(items1, items2)
 
 
 def partition(items, low, high):
@@ -57,3 +100,4 @@ def quick_sort(items, low=None, high=None):
     # TODO: Check if list or range is so small it's already sorted (base case)
     # TODO: Partition items in-place around a pivot and get index of pivot
     # TODO: Sort each sublist range by recursively calling quick sort
+

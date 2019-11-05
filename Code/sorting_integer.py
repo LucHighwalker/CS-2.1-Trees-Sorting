@@ -11,6 +11,32 @@ def counting_sort(numbers):
     # TODO: Loop over given numbers and increment each number's count
     # TODO: Loop over counts and append that many numbers into output list
     # FIXME: Improve this to mutate input instead of creating new output list
+    min_val = numbers[0]
+    max_val = numbers[0]
+
+    counter = {}
+
+    for num in numbers:
+        if num < min_val:
+            min_val = num
+        if num > max_val:
+            max_val = num
+
+        try:
+            counter[num] += 1
+        except KeyError:
+            counter[num] = 1
+
+    new_list = []
+
+    for i in range(min_val, max_val + 1):
+        try:
+            for _ in range(0, counter[i]):
+                new_list.append(i)
+        except KeyError:
+            pass
+        
+    return new_list
 
 
 def bucket_sort(numbers, num_buckets=10):
