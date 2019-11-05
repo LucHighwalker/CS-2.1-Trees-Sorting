@@ -1,5 +1,7 @@
 #!python
 
+from sorting_recursive import merge_sort
+
 
 def counting_sort(numbers):
     """Sort given numbers (integers) by counting occurrences of each number,
@@ -35,7 +37,7 @@ def counting_sort(numbers):
                 new_list.append(i)
         except KeyError:
             pass
-        
+
     return new_list
 
 
@@ -50,3 +52,19 @@ def bucket_sort(numbers, num_buckets=10):
     # TODO: Sort each bucket using any sorting algorithm (recursive or another)
     # TODO: Loop over buckets and append each bucket's numbers into output list
     # FIXME: Improve this to mutate input instead of creating new output list
+
+    buckets = list(list() for _ in range(0, num_buckets + 1))
+    per_bucket = (len(numbers) // num_buckets) + (num_buckets // 2)
+
+    for num in numbers:
+        bucket_index = num // per_bucket
+        buckets[bucket_index].append(num)
+
+    result = []
+
+    for bucket in buckets:
+        merge_sort(bucket)
+        for num in bucket:
+            result.append(num)
+
+    numbers[:] = result
