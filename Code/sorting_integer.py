@@ -58,6 +58,8 @@ def bucket_sort(numbers, num_buckets=10):
 
     for num in numbers:
         bucket_index = num // per_bucket
+        if bucket_index > num_buckets:
+            bucket_index = num_buckets
         buckets[bucket_index].append(num)
 
     result = []
