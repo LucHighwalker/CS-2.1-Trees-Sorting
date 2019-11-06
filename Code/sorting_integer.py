@@ -1,6 +1,6 @@
 #!python
 
-from sorting_recursive import merge_sort
+from sorting_recursive import quick_sort
 
 
 def counting_sort(numbers):
@@ -65,7 +65,7 @@ def bucket_sort(numbers, num_buckets=10):
     result = []
 
     for bucket in buckets:
-        merge_sort(bucket)
+        quick_sort(bucket)
         for num in bucket:
             result.append(num)
 
