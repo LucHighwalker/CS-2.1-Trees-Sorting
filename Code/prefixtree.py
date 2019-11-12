@@ -2,6 +2,8 @@
 
 from prefixtreenode import PrefixTreeNode
 
+from queue import deque
+
 
 class PrefixTree:
     """PrefixTree: A multi-way prefix tree that stores strings with efficient
@@ -35,15 +37,29 @@ class PrefixTree:
 
     def is_empty(self):
         """Return True if this prefix tree is empty (contains no strings)."""
-        # TODO
+        return self.root.num_children() == 0
 
     def contains(self, string):
         """Return True if this prefix tree contains the given string."""
-        # TODO
+        node = self.root
+        for c in string:
+            if node.has_child(c):
+                node = node.get_child(c)
+            else:
+                return False
+        return node.terminal
 
     def insert(self, string):
         """Insert the given string into this prefix tree."""
-        # TODO
+        node = self.root
+        for c in string:
+            if not node.has_child(c):
+                node.add_child(c, PrefixTreeNode(c))
+                node = node.get_child(c)
+            else:
+                node = node.get_child(c)
+        node.terminal = True
+        self.size += 1
 
     def _find_node(self, string):
         """Return a tuple containing the node that terminates the given string
@@ -55,25 +71,41 @@ class PrefixTree:
             return self.root, 0
         # Start with the root node
         node = self.root
-        # TODO
+        depth = 0
+        for c in string:
+            if node.has_child(c):
+                node = node.get_child(c)
+                depth += 1
+            else:
+                return None, depth
+        return node, depth if node.terminal else None, depth
 
     def complete(self, prefix):
         """Return a list of all strings stored in this prefix tree that start
         with the given prefix string."""
         # Create a list of completions in prefix tree
-        completions = []
-        # TODO
+        # completions = []
+        # node = self.root
+        # for c in prefix:
+        #     if node.has_child(c):
+        #         node = node.get_child(c)
+        #     else:
+        #         return []
+
+        # prefix_node = node
+        # node_queue = deque()
+        
+        
 
     def strings(self):
         """Return a list of all strings stored in this prefix tree."""
         # Create a list of all strings in prefix tree
         all_strings = []
-        # TODO
 
     def _traverse(self, node, prefix, visit):
         """Traverse this prefix tree with recursive depth-first traversal.
         Start at the given node and visit each node with the given function."""
-        # TODO
+        #  TODO
 
 
 def create_prefix_tree(strings):
