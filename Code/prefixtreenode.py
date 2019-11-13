@@ -37,12 +37,13 @@ class PrefixTreeNode:
         except KeyError:
             return False
 
-    def get_all_children(self):
+    def all_children(self):
         """Returns an array of all child nodes"""
         children = []
         keys = self.children.keys()
         for k in keys:
             children.append(self.get_child(k))
+        return children
 
     def get_child(self, character):
         """Return this prefix tree node's child node that represents the given
