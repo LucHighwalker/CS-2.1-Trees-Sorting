@@ -1,4 +1,5 @@
 #!python
+from binaryheap import BinaryMinHeap
 
 
 def is_sorted(items):
@@ -69,6 +70,16 @@ def selection_sort(items):
 
       if already_sorted == len(items):
         sortd = True
+
+def heap_sort(items):
+  heap = BinaryMinHeap(items)
+
+  sorted_items = []
+
+  while heap.size() > 0:
+    sorted_items.append(heap.delete_min())
+
+  items[:] = sorted_items
 
 
 
